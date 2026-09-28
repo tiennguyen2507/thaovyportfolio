@@ -1,0 +1,58 @@
+@import "tailwindcss";
+@import "./fonts.css";
+
+:root {
+  --background: #fbf7ee;
+  --foreground: #111111;
+  --primary-pink: #f783b7;
+  --soft-pink: #ffc7e0;
+  --light-pink: #fff0f5;
+  --accent-pink: #e06096;
+}
+
+html, body {
+  background-color: #fbf7ee;
+  background-image: url('/_assets/media/3a741f93c07c7dd233524f48bb0d936f.jpg');
+  background-repeat: repeat;
+  background-size: 800px 614px;
+  background-attachment: fixed;
+  background-position: top center;
+  color: var(--foreground);
+  font-family: 'Intro Pro', 'Arimo', sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  min-height: 100vh;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(253, 242, 248, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: #f472b6;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #db2777;
+}
+
+/* Presentation Canvas Page styling */
+.canvas-slide-container {
+  position: relative;
+  width: 100%;
+  max-width: 1366px;
+  margin: 0 auto;
+  aspect-ratio: 1366 / 768;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+@media (max-width: 1366px) {
+  .canvas-slide-container {
+    width: 100vw;
+  }
+}

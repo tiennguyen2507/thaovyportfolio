@@ -1,0 +1,79 @@
+@font-face {
+  font-family: 'Intro Rust';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/_assets/fonts/95b0a15d95569caf5625a8b5c5b08a3a.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Intro Pro';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/_assets/fonts/e2ef603699074535846efc5e89969329.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Intro Pro';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/_assets/fonts/0263de5345b26cf34db534d9cd7a823a.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/_assets/fonts/834f64ff415fb8f4f5d92d8fd40507e9.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/_assets/fonts/711f50b3a8c00bb7e2e05ef85f982cb6.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Arimo';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/_assets/fonts/b07201e0e9fc452103c1c0345b0e7c1d.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Arimo';
+  font-style: italic;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/_assets/fonts/0803f40e19a074a5520c2746a6ba3c95.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Give You Glory';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/_assets/fonts/a4ce37accd8ae13beba8b75596b7bb08.woff') format('woff');
+}
+
+.font-intro-rust {
+  font-family: 'Intro Rust', sans-serif;
+}
+
+.font-intro-pro {
+  font-family: 'Intro Pro', sans-serif;
+}
+
+.font-arimo {
+  font-family: 'Arimo', sans-serif;
+}
+
+.font-glory {
+  font-family: 'Give You Glory', cursive;
+}
