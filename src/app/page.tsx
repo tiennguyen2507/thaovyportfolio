@@ -1,13 +1,15 @@
-import SinglePageRenderer from "@/components/SinglePageRenderer";
-import routesPagesDataRaw from "@/data/routes_pages_data.json";
+import PageLayout from "@/components/layout/PageLayout";
+import HomeHero from "@/components/home/HomeHero";
 
-const routesPagesData = routesPagesDataRaw as any[];
-const homePage = routesPagesData.find((p) => p.slug === "home") || routesPagesData[0];
+export const metadata = {
+  title: "Hoang Pham Thuy Anh - Portfolio",
+  description: "Communication and Event Student Portfolio of Hoang Pham Thuy Anh",
+};
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen w-full flex flex-col items-center justify-start bg-transparent">
-      <SinglePageRenderer page={homePage} />
-    </main>
+    <PageLayout>
+      <HomeHero />
+    </PageLayout>
   );
 }

@@ -10,7 +10,13 @@
   --accent-pink: #e06096;
 }
 
-html, body {
+html {
+  scroll-behavior: smooth;
+  height: auto;
+  min-height: 100%;
+}
+
+body {
   background-color: #fbf7ee;
   background-image: url('https://hoangphamthuyanh.com/_assets/media/3a741f93c07c7dd233524f48bb0d936f.jpg');
   background-repeat: repeat;
@@ -20,8 +26,11 @@ html, body {
   color: var(--foreground);
   font-family: 'Intro Pro', 'Arimo', sans-serif;
   overflow-x: hidden;
-  scroll-behavior: smooth;
+  overflow-y: auto;
   min-height: 100vh;
+  height: auto;
+  margin: 0;
+  padding: 0;
 }
 
 /* Custom scrollbar */
@@ -39,7 +48,7 @@ html, body {
   background: #db2777;
 }
 
-/* Presentation Canvas Page styling */
+/* Presentation Canvas Page styling for dynamic subpages */
 .canvas-slide-container {
   position: relative;
   width: 100%;
