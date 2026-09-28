@@ -7,14 +7,16 @@ const data = JSON.parse(fs.readFileSync("./scripts_bootstrap.json", "utf8"));
 const mediaMap = {};
 if (data.page.E) {
   data.page.E.forEach(item => {
-    if (item.id && item.files) {
-      if (!mediaMap[item.id]) mediaMap[item.id] = [];
-      item.files.forEach(f => {
-        mediaMap[item.id].push(f);
-      });
+    if (item.id && item.files && item.files.length > 0) {
+      const svgFile = item.files.find(f => f.url && f.url.endsWith(".svg"));
+      const bestFile = svgFile || item.files[item.files.length - 1];
+      if (bestFile && bestFile.url) {
+        mediaMap[item.id] = "https://hoangphamthuyanh.com/" + bestFile.url.replace(/^\/+/, "");
+      }
     }
   });
 }
+mediaMap["MAAPIqwS0MY"] = "https://hoangphamthuyanh.com/_assets/media/31c0105f470124ec88db7826b2892025.svg";
 
 // 2. Map all videos
 const videoMap = {};
@@ -133,28 +135,50 @@ const pages = data.page.A.A.map((p, pageIdx) => {
       }
 
       // Image / Graphic element
-      if (el["A?"] === "I" || el.a?.B?.A?.A) {
-        const imgId = el.a?.B?.A?.A;
-        const files = mediaMap[imgId] || [];
-        const bestFile = files[files.length - 1] || files[0];
-        const url = bestFile?.url ? "/" + bestFile.url.replace(/^\/+/, "") : null;
+      if (el["A?"] === "I" || el.a?.B?.A?.A || el.a?.B?.I?.A) {
+        const clipMaskId = el.a?.B?.I?.A;
+        const originalId = el.a?.B?.A?.A;
+        const imgId = clipMaskId || originalId;
+        const url = mediaMap[imgId] || mediaMap[originalId] || null;
+        const colorMap = el.a?.B?.C || null;
         return {
           type: "image",
           bounds,
           imgId,
           url,
           link,
-          width: bestFile?.width || bounds.width,
-          height: bestFile?.height || bounds.height
+          colorMap,
+          width: bounds.width,
+          height: bounds.height
         };
       }
 
-      // Embed element
+      // Progress Bar / Chart (Type M)
       if (el["A?"] === "M") {
+        const percent = parseFloat(el.c?.[0]?.A?.[0] || "0");
+        const bgColor = el.c?.[0]?.B?.B || "#ffc7e0";
+        const fillColor = el.c?.[1]?.B?.B || "#f783b7";
         return {
-          type: "embed",
+          type: "progress",
           bounds,
-          embedData: el
+          percent,
+          bgColor,
+          fillColor,
+          link
+        };
+      }
+
+      // Shape / Button pill (Type J)
+      if (el["A?"] === "J") {
+        const color = el.b?.[0]?.B?.C || "#f783b7";
+        const borderRadius = el.b?.[0]?.D || 36;
+        const shapeLink = link || el.G || el.f?.[0]?.A?.B?.[0]?.A?.link?.B || null;
+        return {
+          type: "shape",
+          bounds,
+          color,
+          borderRadius,
+          link: shapeLink
         };
       }
 
