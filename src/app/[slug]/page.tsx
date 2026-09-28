@@ -1,47 +1,30 @@
-import React from "react";
-import { notFound } from "next/navigation";
 import SinglePageRenderer from "@/components/SinglePageRenderer";
 import routesPagesDataRaw from "@/data/routes_pages_data.json";
+import { notFound } from "next/navigation";
 
 const routesPagesData = routesPagesDataRaw as any[];
 
-export async function generateStaticParams() {
+export function generateStaticParams() {
   return routesPagesData
     .filter((p) => p.slug && p.slug !== "home")
-    .map((p) => ({
-      slug: p.slug,
-    }));
+    .map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({
-  params,
-}: {
+interface PageProps {
   params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
-  const page = routesPagesData.find((p) => p.slug === slug);
-  if (!page) return { title: "Page Not Found" };
-
-  return {
-    title: `${page.title} | Hoang Pham Thuy Anh Portfolio`,
-    description: `Details of ${page.title} - Hoang Pham Thuy Anh PR & Event Organizing Portfolio.`,
-  };
 }
 
-export default async function DynamicSlugPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+export default async function DynamicPage({ params }: PageProps) {
+  const resolvedParams = await params;
+  const slug = resolvedParams.slug;
   const page = routesPagesData.find((p) => p.slug === slug);
 
   if (!page) {
-    notFound();
+    return notFound();
   }
 
   return (
-    <main className="min-h-screen bg-transparent flex flex-col items-center justify-start w-full">
+    <main className="min-h-screen w-full flex flex-col items-center justify-start bg-transparent">
       <SinglePageRenderer page={page} />
     </main>
   );

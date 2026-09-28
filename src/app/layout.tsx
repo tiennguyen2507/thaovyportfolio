@@ -29,6 +29,24 @@ export const metadata: Metadata = {
   }
 };
 
+const CANVA_CSS_FILES = [
+  "/_assets/b944c5112e8b1828.ltr.css",
+  "/_assets/static_font_4.ltr.css",
+  "/_assets/06b1e480f5fc0960.ltr.css",
+  "/_assets/28f64f5a77f6500c.ltr.css",
+  "/_assets/4b869a0c4034a3e7.ltr.css",
+  "/_assets/b32c1410d840135e.ltr.css",
+  "/_assets/9880713039821adb.ltr.css",
+  "/_assets/c627ef89c1764c44.ltr.css",
+  "/_assets/3409e8e504c69dd2.ltr.css",
+  "/_assets/6dcf592a099575f4.ltr.css",
+  "/_assets/49165a5d963019da.ltr.css",
+  "/_assets/8ef1614d513d9534.ltr.css",
+  "/_assets/6ef534890ea95fd1.ltr.css",
+  "/_assets/f006f4aff9718490.ltr.css",
+  "/_assets/c33ae7848c78a6af.ltr.css"
+];
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -36,6 +54,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth" data-scroll-behavior="smooth">
+      <head>
+        {CANVA_CSS_FILES.map((cssHref, idx) => (
+          <link key={idx} rel="stylesheet" href={cssHref} />
+        ))}
+      </head>
       <body className="antialiased text-gray-900 selection:bg-pink-200 selection:text-pink-900">
         {children}
       </body>

@@ -58,18 +58,16 @@ export default function CanvasBlock({
   return (
     <div
       ref={containerRef}
-      className="@container relative w-full max-w-[1366px] mx-auto overflow-hidden select-none bg-transparent"
+      className="relative w-full max-w-[1366px] mx-auto select-none bg-transparent overflow-visible"
       style={{
         aspectRatio: `${blockWidth} / ${blockHeight}`,
+        containerType: "inline-size",
         backgroundColor: "transparent",
-        backgroundImage: bgUrl ? `url(${bgUrl})` : "none",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
       }}
     >
       {elements.map((el, elIdx) => {
         const { bounds, link } = el;
-        
+
         // Exact percentage coordinates based on Canva artboard
         const leftPercent = (bounds.left / blockWidth) * 100;
         const topPercent = (bounds.top / blockHeight) * 100;
@@ -86,6 +84,7 @@ export default function CanvasBlock({
           transform: rotateDeg !== 0 ? `rotate(${rotateDeg}deg)` : "none",
           transformOrigin: "center center",
           zIndex: el.type === "text" ? 20 : 10,
+          overflow: "visible",
         };
 
         // Render Text
@@ -101,7 +100,7 @@ export default function CanvasBlock({
 
           const content = (
             <div
-              className={`w-full h-full flex flex-col justify-start leading-tight whitespace-pre-wrap ${fontClass} ${
+              className={`w-full h-full flex flex-col justify-start whitespace-pre-wrap overflow-visible ${fontClass} ${
                 el.isUnderline ? "underline underline-offset-4" : ""
               } ${link ? "cursor-pointer hover:opacity-75 transition-opacity" : ""}`}
               style={{
@@ -109,7 +108,7 @@ export default function CanvasBlock({
                 fontSize: `calc((${el.fontSize || 20} / ${blockWidth}) * 100cqi)`,
                 textAlign: el.textAlign || "left",
                 fontWeight: el.fontWeight === "bold" ? 700 : 400,
-                lineHeight: "1.05",
+                lineHeight: el.fontSize && el.fontSize > 100 ? "1.015" : "1.15",
                 letterSpacing: "-0.015em",
               }}
             >
@@ -151,11 +150,17 @@ export default function CanvasBlock({
 
         // Render Image
         if (el.type === "image" && el.url) {
-          const isIconOrShape = bounds.width < 90 && bounds.height < 90;
+          const isIconOrShape =
+            bounds.width < 90 && bounds.height < 90;
+          const isTransparentPng =
+            el.url.includes(".png") || el.url.includes(".svg");
+
           const imageContent = (
-            <div 
-              className={`relative w-full h-full group ${!isIconOrShape && !link ? "cursor-zoom-in" : ""}`}
-              onClick={(e) => {
+            <div
+              className={`relative w-full h-full group ${
+                !isIconOrShape && !link ? "cursor-zoom-in" : ""
+              }`}
+              onClick={() => {
                 if (!link && !isIconOrShape && onImageClick && el.url) {
                   onImageClick(el.url, `Portfolio image ${pageId}-${elIdx}`);
                 }
@@ -164,13 +169,15 @@ export default function CanvasBlock({
               <img
                 src={el.url}
                 alt={`Image ${elIdx}`}
-                className="w-full h-full object-contain pointer-events-auto"
+                className={`w-full h-full ${
+                  isTransparentPng ? "object-contain" : "object-cover"
+                } pointer-events-auto`}
                 loading="lazy"
               />
               {!isIconOrShape && !link && (
                 <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity rounded flex items-center justify-center pointer-events-none">
-                  <div className="p-1 rounded-full bg-white/80 backdrop-blur-sm shadow-sm text-gray-800">
-                    <Maximize2 className="w-3 h-3" />
+                  <div className="p-1.5 rounded-full bg-white/80 backdrop-blur-sm shadow-sm text-gray-800">
+                    <Maximize2 className="w-3.5 h-3.5" />
                   </div>
                 </div>
               )}
@@ -182,7 +189,10 @@ export default function CanvasBlock({
             if (isInternal) {
               return (
                 <div key={elIdx} style={commonStyle}>
-                  <Link href={link} className="block w-full h-full cursor-pointer hover:opacity-85 transition-opacity">
+                  <Link
+                    href={link}
+                    className="block w-full h-full cursor-pointer hover:opacity-85 transition-opacity"
+                  >
                     {imageContent}
                   </Link>
                 </div>
