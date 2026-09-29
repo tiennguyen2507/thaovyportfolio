@@ -1,6 +1,9 @@
 "use client";
 
 import React from "react";
+import TypewriterText from "@/components/common/TypewriterText";
+
+const FULL_LINES = ["WELCOME", "TO", "MY", "PORTFOLIO"];
 
 export default function HomeHero() {
   return (
@@ -10,7 +13,7 @@ export default function HomeHero() {
         {/* Left: Giant Typography with Cutout Portrait Layered Underneath Text */}
         <div className="relative w-full lg:w-[62%] flex flex-col justify-start">
           {/* Cutout Portrait Image Behind Text (z-0) */}
-          <div className="absolute top-[12%] sm:top-[15%] lg:top-[15%] left-[11%] xs:left-[12%] sm:left-[14%] lg:left-[15%] w-[300px] xs:w-[320px] sm:w-[490px] lg:w-[590px] z-0 pointer-events-none">
+          <div className="absolute top-[12%] sm:top-[15%] lg:top-[15%] left-[11%] xs:left-[12%] sm:left-[14%] lg:left-[15%] w-[300px] xs:w-[320px] sm:w-[490px] lg:w-[590px] z-0 pointer-events-none transition-opacity duration-700 ease-out">
             <div className="relative w-full">
               <img
                 src="/_assets/media/ac79b52be38aaa3d387de99b05db06ba.png"
@@ -27,16 +30,14 @@ export default function HomeHero() {
             </div>
           </div>
 
-          {/* Giant Typography Sitting In Front of the Image (z-10) */}
-          <h1 className="relative z-10 font-['Intro_Rust'] text-[60px] sm:text-[115px] lg:text-[142px] leading-[0.96] sm:leading-[1.0] lg:leading-[1.02] text-[#f783b7] tracking-normal uppercase">
-            welcome
-            <br />
-            to
-            <br />
-            my
-            <br />
-            portfolio
-          </h1>
+          {/* Giant Typography with Zero-Shift Typewriter Animation (z-10) */}
+          <TypewriterText
+            as="h1"
+            lines={FULL_LINES}
+            speed={110}
+            className="relative z-10 font-['Intro_Rust'] text-[60px] sm:text-[115px] lg:text-[142px] leading-[0.96] sm:leading-[1.0] lg:leading-[1.02] text-[#f783b7] tracking-normal uppercase flex flex-col items-start justify-start"
+            lineClassName="relative whitespace-nowrap flex items-center"
+          />
         </div>
 
         {/* Right Section: Details + Pointing Chibi (Side by side on mobile: Image Left, Text Right) */}
@@ -54,26 +55,40 @@ export default function HomeHero() {
           <div className="w-[62%] xs:w-[58%] sm:w-[55%] lg:w-full flex flex-col items-end text-right space-y-2.5 xs:space-y-3.5 sm:space-y-6 order-2 lg:order-1">
             {/* Name & Nickname */}
             <div className="text-right w-full flex flex-col items-end">
-              <h2 className="font-['Intro_Rust'] text-base xs:text-xl sm:text-[30px] lg:text-[33px] text-[#ffc7e0] uppercase leading-tight tracking-wide text-right">
-                hoang pham
-                <br />
-                thuy anh
-              </h2>
-              <p className="font-['Intro_Pro'] text-xs xs:text-sm sm:text-[19px] text-black font-semibold mt-0.5 sm:mt-1 text-right">
-                Blaze
-              </p>
+              <TypewriterText
+                as="h2"
+                lines={["hoang pham", "thuy anh"]}
+                speed={70}
+                delay={200}
+                className="font-['Intro_Rust'] text-base xs:text-xl sm:text-[30px] lg:text-[33px] text-[#ffc7e0] uppercase leading-tight tracking-wide text-right"
+                lineClassName="relative whitespace-nowrap block"
+              />
+              <TypewriterText
+                as="p"
+                text="Blaze"
+                speed={80}
+                delay={450}
+                className="font-['Intro_Pro'] text-xs xs:text-sm sm:text-[19px] text-black font-semibold mt-0.5 sm:mt-1 text-right"
+              />
             </div>
 
             {/* Major & Subtitle */}
             <div className="text-right w-full flex flex-col items-end">
-              <h3 className="font-['Intro_Rust'] text-[13px] xs:text-base sm:text-[30px] lg:text-[33px] text-[#ffc7e0] uppercase leading-tight tracking-wide text-right">
-                communication and
-                <br />
-                event student
-              </h3>
-              <p className="font-['Intro_Pro'] text-[11px] xs:text-xs sm:text-[19px] text-black font-semibold mt-0.5 sm:mt-1 text-right">
-                Major PR and Event
-              </p>
+              <TypewriterText
+                as="h3"
+                lines={["communication and", "event student"]}
+                speed={60}
+                delay={350}
+                className="font-['Intro_Rust'] text-[13px] xs:text-base sm:text-[30px] lg:text-[33px] text-[#ffc7e0] uppercase leading-tight tracking-wide text-right"
+                lineClassName="relative whitespace-nowrap block"
+              />
+              <TypewriterText
+                as="p"
+                text="Major PR and Event"
+                speed={60}
+                delay={600}
+                className="font-['Intro_Pro'] text-[11px] xs:text-xs sm:text-[19px] text-black font-semibold mt-0.5 sm:mt-1 text-right"
+              />
             </div>
           </div>
         </div>
@@ -100,11 +115,17 @@ export default function HomeHero() {
             />
           </div>
 
-          <h2 className="font-['Intro_Rust'] text-xs xs:text-sm sm:text-2xl lg:text-[30px] text-[#f783b7] uppercase leading-snug tracking-wide max-w-2xl mt-0.5 sm:mt-1 text-right">
-            you might just spot me... because i'm
-            <br />
-            literally everywhere! even on bus ads! 🚍✨
-          </h2>
+          <TypewriterText
+            as="h2"
+            lines={[
+              "you might just spot me... because i'm",
+              "literally everywhere! even on bus ads! 🚍✨",
+            ]}
+            speed={45}
+            delay={100}
+            className="font-['Intro_Rust'] text-xs xs:text-sm sm:text-2xl lg:text-[30px] text-[#f783b7] uppercase leading-snug tracking-wide max-w-2xl mt-0.5 sm:mt-1 text-right"
+            lineClassName="relative block"
+          />
         </div>
       </section>
     </div>

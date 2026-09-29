@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export const SOCIAL_LINKS = [
   {
@@ -36,13 +37,19 @@ export default function Footer() {
       <div className="flex flex-row items-center justify-between gap-2 xs:gap-4 sm:gap-8 pt-2 sm:pt-6">
         {/* Left Info Section */}
         <div className="flex flex-col items-start text-left flex-1 min-w-0">
-          <h2 className="font-['Intro_Rust'] text-xl xs:text-2xl sm:text-4xl lg:text-[54px] text-[#f783b7] tracking-wider leading-none mb-2 sm:mb-3 uppercase">
-            let’s get in touch!
-          </h2>
+          <TypewriterText
+            as="h2"
+            text="let’s get in touch!"
+            speed={85}
+            className="font-['Intro_Rust'] text-xl xs:text-2xl sm:text-4xl lg:text-[54px] text-[#f783b7] tracking-wider leading-none mb-2 sm:mb-3 uppercase"
+          />
 
-          <h3 className="font-['Intro_Rust'] text-sm xs:text-lg sm:text-2xl lg:text-[28px] text-[#ffc7e0] tracking-wider leading-tight mb-2.5 sm:mb-4 uppercase">
-            hoang pham thuy anh
-          </h3>
+          <TypewriterText
+            as="h3"
+            text="hoang pham thuy anh"
+            speed={85}
+            className="font-['Intro_Rust'] text-sm xs:text-lg sm:text-2xl lg:text-[28px] text-[#ffc7e0] tracking-wider leading-tight mb-2.5 sm:mb-4 uppercase"
+          />
 
           <div className="font-['Intro_Pro'] text-xs xs:text-sm sm:text-base lg:text-[17px] text-black space-y-0.5 sm:space-y-1 mb-3 sm:mb-6">
             <p>

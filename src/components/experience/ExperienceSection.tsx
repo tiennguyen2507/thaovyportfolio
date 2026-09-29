@@ -1,7 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import TypewriterText from "@/components/common/TypewriterText";
 
 interface ExperienceItem {
   title: string;
@@ -152,13 +153,42 @@ const EXPERIENCE_DATA: CategoryGroup[] = [
 ];
 
 export default function ExperienceSection() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [animationDone, setAnimationDone] = useState(false);
+
+  // Pre-calculate starting index for each category
+  const categoryStartIndexes = EXPERIENCE_DATA.reduce<number[]>((acc, cat, idx) => {
+    if (idx === 0) return [0];
+    return [...acc, acc[idx - 1] + EXPERIENCE_DATA[idx - 1].items.length];
+  }, []);
+
+  const totalCards = EXPERIENCE_DATA.reduce((acc, cat) => acc + cat.items.length, 0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 80);
+
+    const doneTimer = setTimeout(() => {
+      setAnimationDone(true);
+    }, totalCards * 100 + 750);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(doneTimer);
+    };
+  }, [totalCards]);
+
   return (
     <div className="w-full max-w-[1366px] mx-auto px-4 sm:px-12 py-4 flex flex-col gap-8 sm:gap-10 select-none">
       {/* 1. Page Title */}
       <div className="flex items-center gap-2.5 sm:gap-3">
-        <h1 className="font-['Intro_Rust'] text-4xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider uppercase leading-none">
-          event
-        </h1>
+        <TypewriterText
+          as="h1"
+          text="event"
+          speed={80}
+          className="font-['Intro_Rust'] text-4xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider uppercase leading-none"
+        />
         <div className="transform rotate-[41deg]">
           <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="#ffc7e0">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
@@ -167,17 +197,36 @@ export default function ExperienceSection() {
       </div>
 
       {/* 2. Categorized Project Grids */}
-      {EXPERIENCE_DATA.map((cat) => (
+      {EXPERIENCE_DATA.map((cat, catIdx) => (
         <section key={cat.categoryName} className="flex flex-col gap-6">
           {/* Category Header */}
-          <h2 className="font-['Intro_Rust'] text-2xl sm:text-[30px] text-black uppercase tracking-wider underline decoration-black decoration-2 underline-offset-4">
-            {cat.categoryName}
-          </h2>
+          <TypewriterText
+            as="h2"
+            text={cat.categoryName}
+            speed={65}
+            className="font-['Intro_Rust'] text-2xl sm:text-[30px] text-black uppercase tracking-wider underline decoration-black decoration-2 underline-offset-4"
+          />
 
           {/* 2-Column on Mobile, 3-Column on Desktop */}
           <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-8 lg:gap-10 items-start">
-            {cat.items.map((item) => (
-              <article key={item.title} className="flex flex-col justify-start group">
+            {cat.items.map((item, itemIdx) => {
+              const cardIndex = categoryStartIndexes[catIdx] + itemIdx;
+              return (
+                <article
+                  key={item.title}
+                  style={
+                    animationDone
+                      ? undefined
+                      : {
+                          transitionDelay: isLoaded ? `${cardIndex * 100}ms` : "0ms",
+                        }
+                  }
+                  className={`flex flex-col justify-start group transition-all duration-700 ease-out ${
+                    isLoaded
+                      ? "opacity-100 translate-y-0 scale-100"
+                      : "opacity-0 translate-y-8 scale-95 pointer-events-none"
+                  }`}
+                >
                 {/* Thumbnail Image */}
                 <Link
                   href={item.href}
@@ -217,7 +266,8 @@ export default function ExperienceSection() {
                   </Link>
                 </div>
               </article>
-            ))}
+            );
+          })}
           </div>
         </section>
       ))}

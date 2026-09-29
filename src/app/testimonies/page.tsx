@@ -1,5 +1,6 @@
 import PageLayout from "@/components/layout/PageLayout";
 import TestimoniesSection from "@/components/testimonies/TestimoniesSection";
+import TypewriterText from "@/components/common/TypewriterText";
 
 export const metadata = {
   title: "Testimonies - Hoang Pham Thuy Anh",
@@ -12,9 +13,12 @@ export default function TestimoniesPage() {
       <div className="w-full max-w-[1366px] mx-auto px-4 sm:px-10 py-4 sm:py-10 flex flex-col gap-5 sm:gap-8 select-none">
         {/* Page Title with Pink Heart */}
         <div className="flex items-center gap-2.5 sm:gap-3">
-          <h1 className="font-['Intro_Rust'] text-4xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider capitalize leading-none">
-            testimonies
-          </h1>
+          <TypewriterText
+            as="h1"
+            text="testimonies"
+            speed={80}
+            className="font-['Intro_Rust'] text-4xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider capitalize leading-none"
+          />
           <svg
             className="w-8 h-8 sm:w-12 sm:h-12 transform rotate-[41deg] animate-pulse"
             viewBox="0 0 24 24"

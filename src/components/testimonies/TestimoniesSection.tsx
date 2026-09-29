@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 export interface TestimonialItem {
   id: string;
@@ -150,13 +150,43 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
 ];
 
 export default function TestimoniesSection() {
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [animationDone, setAnimationDone] = useState(false);
+
+  useEffect(() => {
+    // Kích hoạt xuất hiện từng thẻ khi load page
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+    }, 80);
+
+    const doneTimer = setTimeout(() => {
+      setAnimationDone(true);
+    }, TESTIMONIALS_DATA.length * 100 + 750);
+
+    return () => {
+      clearTimeout(timer);
+      clearTimeout(doneTimer);
+    };
+  }, []);
+
   return (
     <div className="w-full max-w-[1366px] mx-auto px-1 sm:px-8 py-2 sm:py-6">
       <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
-        {TESTIMONIALS_DATA.map((item) => (
+        {TESTIMONIALS_DATA.map((item, index) => (
           <div
             key={item.id}
-            className="group relative flex flex-col items-center justify-between p-3.5 sm:p-6 rounded-2xl bg-[#fed7e2]/75 hover:bg-[#fed7e2] border border-pink-200/60 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-center select-text min-h-[290px] sm:min-h-[340px]"
+            style={
+              animationDone
+                ? undefined
+                : {
+                    transitionDelay: isLoaded ? `${index * 100}ms` : "0ms",
+                  }
+            }
+            className={`group relative flex flex-col items-center justify-between p-3.5 sm:p-6 rounded-2xl bg-[#fed7e2]/75 hover:bg-[#fed7e2] border border-pink-200/60 shadow-sm hover:shadow-md transition-all duration-700 ease-out hover:-translate-y-1.5 text-center select-text min-h-[290px] sm:min-h-[340px] ${
+              isLoaded
+                ? "opacity-100 translate-y-0 scale-100"
+                : "opacity-0 translate-y-8 scale-95 pointer-events-none"
+            }`}
           >
             {/* Top avatar */}
             <div className="flex flex-col items-center justify-center w-full mb-2 sm:mb-3 min-h-[58px] sm:min-h-[76px]">
