@@ -3,7 +3,7 @@ import TestimoniesSection from "@/components/testimonies/TestimoniesSection";
 import TypewriterText from "@/components/common/TypewriterText";
 
 export const metadata = {
-  title: "Testimonies - Hoang Pham Thuy Anh",
+  title: "Testimonies | Hoang Pham Thuy Anh",
   description: "What professors, mentors and teammates say about Hoang Pham Thuy Anh",
 };
 

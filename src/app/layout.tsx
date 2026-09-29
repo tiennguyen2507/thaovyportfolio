@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
     default: "Hoang Pham Thuy Anh - Communication & Event Portfolio",
-    template: "%s | Hoang Pham Thuy Anh Portfolio",
+    template: "%s",
   },
   description:
     "Official Portfolio of Hoang Pham Thuy Anh (Vy / Blaze) - Communication and Event Management Student at RMIT University Hanoi & VinUniversity. Founder of HoopTopia, Communication Executive at Hoang Mai Media.",
