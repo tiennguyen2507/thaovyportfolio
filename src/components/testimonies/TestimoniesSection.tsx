@@ -151,20 +151,17 @@ export const TESTIMONIALS_DATA: TestimonialItem[] = [
 
 export default function TestimoniesSection() {
   return (
-    <div className="w-full max-w-[1366px] mx-auto px-4 sm:px-8 py-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 lg:gap-5">
+    <div className="w-full max-w-[1366px] mx-auto px-1 sm:px-8 py-2 sm:py-6">
+      <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4 lg:gap-5">
         {TESTIMONIALS_DATA.map((item) => (
           <div
             key={item.id}
-            className="group relative flex flex-col items-center justify-between p-5 sm:p-6 rounded-2xl bg-[#fed7e2]/75 hover:bg-[#fed7e2] border border-pink-200/60 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-center select-text"
-            style={{
-              minHeight: "340px",
-            }}
+            className="group relative flex flex-col items-center justify-between p-3.5 sm:p-6 rounded-2xl bg-[#fed7e2]/75 hover:bg-[#fed7e2] border border-pink-200/60 shadow-sm hover:shadow-md transition-all duration-300 hover:-translate-y-1 text-center select-text min-h-[290px] sm:min-h-[340px]"
           >
             {/* Top avatar */}
-            <div className="flex flex-col items-center justify-center w-full mb-3 min-h-[76px]">
+            <div className="flex flex-col items-center justify-center w-full mb-2 sm:mb-3 min-h-[58px] sm:min-h-[76px]">
               {item.avatar ? (
-                <div className="relative w-16 h-16 rounded-full overflow-hidden ring-4 ring-white/90 shadow-sm group-hover:scale-105 transition-transform duration-300 bg-white">
+                <div className="relative w-12 h-12 sm:w-16 sm:h-16 rounded-full overflow-hidden ring-3 sm:ring-4 ring-white/90 shadow-sm group-hover:scale-105 transition-transform duration-300 bg-white">
                   <img
                     src={item.avatar}
                     alt={item.name}
@@ -173,28 +170,28 @@ export default function TestimoniesSection() {
                   />
                 </div>
               ) : (
-                <div className="w-14 h-14 rounded-full bg-white/60 flex items-center justify-center text-pink-400 font-bold text-lg ring-2 ring-white/80">
+                <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/60 flex items-center justify-center text-pink-400 font-bold text-base sm:text-lg ring-2 ring-white/80">
                   {item.name.charAt(0)}
                 </div>
               )}
             </div>
 
             {/* Quote content */}
-            <div className="flex-1 flex items-center justify-center px-1 my-2">
-              <p className="font-intro-pro font-bold text-[#0c2340] text-xs sm:text-[13px] leading-snug tracking-tight">
+            <div className="flex-1 flex items-center justify-center px-0.5 sm:px-1 my-1 sm:my-2">
+              <p className="font-intro-pro font-bold text-[#0c2340] text-[10.5px] xs:text-[11.5px] sm:text-[13px] leading-snug tracking-tight">
                 "{item.quote.replace(/^"|"$/g, "")}"
               </p>
             </div>
 
             {/* Author info & bottom dot */}
-            <div className="w-full mt-3 pt-3 border-t border-pink-200/50 flex flex-col items-center">
-              <h4 className="font-intro-pro text-[11px] sm:text-xs font-semibold text-gray-800 leading-tight">
+            <div className="w-full mt-2 sm:mt-3 pt-2 sm:pt-3 border-t border-pink-200/50 flex flex-col items-center">
+              <h4 className="font-intro-pro text-[10px] xs:text-[11px] sm:text-xs font-semibold text-gray-800 leading-tight">
                 {item.name}
               </h4>
-              <p className="font-intro-pro text-[9.5px] sm:text-[10px] text-gray-600 mt-0.5 leading-tight">
+              <p className="font-intro-pro text-[8.5px] xs:text-[9.5px] sm:text-[10px] text-gray-600 mt-0.5 leading-tight line-clamp-2">
                 {item.role}
               </p>
-              <div className="w-1.5 h-1.5 rounded-full bg-white/90 mt-2" />
+              <div className="w-1.5 h-1.5 rounded-full bg-white/90 mt-1.5 sm:mt-2" />
             </div>
           </div>
         ))}

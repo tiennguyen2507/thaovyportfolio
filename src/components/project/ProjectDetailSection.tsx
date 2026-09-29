@@ -88,12 +88,12 @@ export default function ProjectDetailSection({ page }: ProjectDetailProps) {
   );
 
   return (
-    <article className="w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-20 space-y-16">
+    <article className="w-full max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8 pt-4 sm:pt-6 pb-16 sm:pb-20 space-y-12 sm:space-y-16">
       {/* Back Button & Navigation */}
       <div className="flex items-center justify-between">
         <Link
           href="/experience"
-          className="inline-flex items-center gap-2 font-['Intro_Rust'] text-[14px] sm:text-[16px] text-[#f783b7] hover:text-[#d65d95] transition-colors uppercase tracking-wider group"
+          className="inline-flex items-center gap-2 font-['Intro_Rust'] text-[13px] sm:text-[16px] text-[#f783b7] hover:text-[#d65d95] transition-colors uppercase tracking-wider group"
         >
           <span className="transition-transform group-hover:-translate-x-1">←</span> Back to Experience
         </Link>
@@ -102,7 +102,7 @@ export default function ProjectDetailSection({ page }: ProjectDetailProps) {
       {/* Main Hero Header */}
       <header className="space-y-6">
         <div className="space-y-4">
-          <h1 className="font-['Intro_Rust'] text-[36px] sm:text-[52px] lg:text-[68px] leading-[1.05] text-[#f783b7] uppercase tracking-wide">
+          <h1 className="font-['Intro_Rust'] text-[28px] xs:text-[34px] sm:text-[52px] lg:text-[68px] leading-[1.05] text-[#f783b7] uppercase tracking-wide">
             {page.title}
           </h1>
 

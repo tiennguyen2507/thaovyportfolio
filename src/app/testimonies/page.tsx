@@ -9,14 +9,14 @@ export const metadata = {
 export default function TestimoniesPage() {
   return (
     <PageLayout>
-      <div className="w-full max-w-[1366px] mx-auto px-6 sm:px-10 py-6 sm:py-10 flex flex-col gap-8">
+      <div className="w-full max-w-[1366px] mx-auto px-4 sm:px-10 py-4 sm:py-10 flex flex-col gap-5 sm:gap-8 select-none">
         {/* Page Title with Pink Heart */}
-        <div className="flex items-center gap-3">
-          <h1 className="font-['Intro_Rust'] text-5xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider capitalize leading-none">
+        <div className="flex items-center gap-2.5 sm:gap-3">
+          <h1 className="font-['Intro_Rust'] text-4xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider capitalize leading-none">
             testimonies
           </h1>
           <svg
-            className="w-10 h-10 sm:w-12 sm:h-12 transform rotate-[41deg] animate-pulse"
+            className="w-8 h-8 sm:w-12 sm:h-12 transform rotate-[41deg] animate-pulse"
             viewBox="0 0 24 24"
             fill="#ffc7e0"
           >

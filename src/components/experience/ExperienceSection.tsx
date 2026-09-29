@@ -153,14 +153,14 @@ const EXPERIENCE_DATA: CategoryGroup[] = [
 
 export default function ExperienceSection() {
   return (
-    <div className="w-full max-w-[1366px] mx-auto px-6 sm:px-12 py-4 flex flex-col gap-10 select-none">
+    <div className="w-full max-w-[1366px] mx-auto px-4 sm:px-12 py-4 flex flex-col gap-8 sm:gap-10 select-none">
       {/* 1. Page Title */}
-      <div className="flex items-center gap-3">
-        <h1 className="font-['Intro_Rust'] text-5xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider uppercase leading-none">
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        <h1 className="font-['Intro_Rust'] text-4xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider uppercase leading-none">
           event
         </h1>
         <div className="transform rotate-[41deg]">
-          <svg className="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="#ffc7e0">
+          <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="#ffc7e0">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </div>
@@ -174,14 +174,14 @@ export default function ExperienceSection() {
             {cat.categoryName}
           </h2>
 
-          {/* 3-Column Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 items-start">
+          {/* 2-Column on Mobile, 3-Column on Desktop */}
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-8 lg:gap-10 items-start">
             {cat.items.map((item) => (
               <article key={item.title} className="flex flex-col justify-start group">
                 {/* Thumbnail Image */}
                 <Link
                   href={item.href}
-                  className="block w-full overflow-hidden rounded-2xl mb-4 aspect-[16/10] bg-gray-100 shadow-sm"
+                  className="block w-full overflow-hidden rounded-xl sm:rounded-2xl mb-2 sm:mb-4 aspect-[16/10] bg-gray-100 shadow-sm"
                 >
                   <img
                     src={item.image}
@@ -192,26 +192,26 @@ export default function ExperienceSection() {
 
                 {/* Project Title */}
                 <Link href={item.href} className="inline-block">
-                  <h3 className="font-['Intro_Rust'] text-lg sm:text-[21px] text-[#ffc7e0] uppercase leading-snug tracking-wide underline decoration-[#ffc7e0] underline-offset-4 group-hover:text-pink-400 transition-colors mb-2 min-h-[50px]">
+                  <h3 className="font-['Intro_Rust'] text-xs xs:text-sm sm:text-[20px] lg:text-[21px] text-[#ffc7e0] uppercase leading-snug tracking-wide underline decoration-[#ffc7e0] underline-offset-2 sm:underline-offset-4 group-hover:text-pink-400 transition-colors mb-1 sm:mb-2 min-h-[34px] sm:min-h-[50px]">
                     {item.title}
                   </h3>
                 </Link>
 
                 {/* Role */}
-                <p className="font-['Intro_Pro'] text-base sm:text-[17px] font-bold text-[#f783b7] mb-1.5">
+                <p className="font-['Intro_Pro'] text-xs xs:text-sm sm:text-[17px] font-bold text-[#f783b7] mb-1 sm:mb-1.5">
                   {item.role}
                 </p>
 
                 {/* Description */}
-                <p className="font-['Intro_Pro'] text-xs sm:text-[13.5px] text-black leading-relaxed mb-4 min-h-[42px]">
+                <p className="font-['Intro_Pro'] text-[10.5px] xs:text-xs sm:text-[13.5px] text-black leading-relaxed mb-3 sm:mb-4 min-h-[32px] sm:min-h-[42px] line-clamp-3 sm:line-clamp-none">
                   {item.description}
                 </p>
 
                 {/* More Pill Button */}
-                <div className="pt-1">
+                <div className="pt-0.5 sm:pt-1">
                   <Link
                     href={item.href}
-                    className="inline-flex items-center justify-center px-6 py-1.5 rounded-full bg-[#f783b7] text-white font-['Intro_Pro'] text-sm font-bold shadow-xs hover:bg-pink-500 hover:scale-105 transition-all duration-300"
+                    className="inline-flex items-center justify-center px-4 sm:px-6 py-1 sm:py-1.5 rounded-full bg-[#f783b7] text-white font-['Intro_Pro'] text-xs sm:text-sm font-bold shadow-xs hover:bg-pink-500 hover:scale-105 transition-all duration-300"
                   >
                     More
                   </Link>

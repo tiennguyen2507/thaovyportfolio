@@ -21,18 +21,18 @@ export default function Navbar() {
   };
 
   return (
-    <header className="w-full max-w-[1366px] mx-auto px-6 sm:px-10 pt-5 pb-2 relative z-30 select-none">
+    <header className="w-full max-w-[1366px] mx-auto px-4 sm:px-10 pt-2.5 sm:pt-5 pb-1 sm:pb-2 relative z-30 select-none">
       <div className="flex items-center justify-between">
         {/* Left: Avatar + Title */}
-        <Link href="/" className="flex items-center gap-3 sm:gap-4 group">
-          <div className="w-20 h-20 sm:w-28 sm:h-28 flex-shrink-0">
+        <Link href="/" className="flex items-center gap-2.5 sm:gap-4 group">
+          <div className="w-14 h-14 sm:w-24 sm:h-24 lg:w-28 lg:h-28 flex-shrink-0">
             <img
               src="https://hoangphamthuyanh.com/_assets/media/813d1384daf8a7d3a253ceb1888613a0.png"
               alt="Hoang Pham Thuy Anh"
               className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <span className="font-['Intro_Rust'] text-2xl sm:text-[33px] text-[#f783b7] tracking-wider capitalize leading-none pt-2">
+          <span className="font-['Intro_Rust'] text-lg xs:text-xl sm:text-2xl lg:text-[33px] text-[#f783b7] tracking-wider capitalize leading-none pt-1 sm:pt-2">
             hoang pham thuy anh
           </span>
         </Link>

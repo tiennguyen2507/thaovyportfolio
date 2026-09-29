@@ -45,14 +45,14 @@ const HOBBIES = [
 
 export default function AboutMeSection() {
   return (
-    <div className="w-full max-w-[1366px] mx-auto px-6 sm:px-12 py-4 flex flex-col gap-8 select-none">
+    <div className="w-full max-w-[1366px] mx-auto px-4 sm:px-12 py-4 flex flex-col gap-6 sm:gap-8 select-none">
       {/* 1. Page Title */}
-      <div className="flex items-center gap-3">
-        <h1 className="font-['Intro_Rust'] text-5xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider uppercase leading-none">
+      <div className="flex items-center gap-2.5 sm:gap-3">
+        <h1 className="font-['Intro_Rust'] text-4xl sm:text-6xl lg:text-[66px] text-[#f783b7] tracking-wider uppercase leading-none">
           about me
         </h1>
         <div className="transform rotate-[41deg]">
-          <svg className="w-10 h-10 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="#ffc7e0">
+          <svg className="w-8 h-8 sm:w-12 sm:h-12" viewBox="0 0 24 24" fill="#ffc7e0">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
           </svg>
         </div>
@@ -122,10 +122,10 @@ export default function AboutMeSection() {
               {/* Progress Bars Rows */}
               {SKILL_BARS.map((sk) => (
                 <React.Fragment key={sk.name}>
-                  <span className="font-['Intro_Pro'] text-sm sm:text-[16px] text-black font-normal whitespace-nowrap">
+                  <span className="font-['Intro_Pro'] text-xs sm:text-[16px] text-black font-normal whitespace-nowrap">
                     {sk.name}
                   </span>
-                  <div className="w-[180px] sm:w-[210px] h-3.5 bg-[#ffc7e0] rounded-full overflow-hidden flex-shrink-0">
+                  <div className="w-[120px] xs:w-[160px] sm:w-[210px] h-3 sm:h-3.5 bg-[#ffc7e0] rounded-full overflow-hidden flex-shrink-0">
                     <div
                       className="h-full bg-[#f783b7] rounded-full"
                       style={{ width: `${sk.percent}%` }}
